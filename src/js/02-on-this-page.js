@@ -28,16 +28,18 @@
 
   var lastActiveFragment
   var links = {}
-  var contentsList = headings.length ? headings.reduce(function (accum, heading) {
-    var link = document.createElement('a')
-    link.textContent = heading.textContent
-    links[(link.href = '#' + heading.id)] = link
-    var listItem = document.createElement('li')
-    listItem.dataset.level = parseInt(heading.nodeName.slice(1), 10) - 1
-    listItem.appendChild(link)
-    accum.appendChild(listItem)
-    return accum
-  }, document.createElement('ul')) : undefined
+  var contentsList = headings.length
+    ? headings.reduce(function (accum, heading) {
+        var link = document.createElement('a')
+        link.textContent = heading.textContent
+        links[(link.href = '#' + heading.id)] = link
+        var listItem = document.createElement('li')
+        listItem.dataset.level = parseInt(heading.nodeName.slice(1), 10) - 1
+        listItem.appendChild(link)
+        accum.appendChild(listItem)
+        return accum
+      }, document.createElement('ul'))
+    : undefined
 
   var menu = sidebar.querySelector('.toc-menu')
   if (!menu) (menu = document.createElement('div')).className = 'toc-menu'
