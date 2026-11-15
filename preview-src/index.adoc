@@ -1,5 +1,5 @@
-= Hardware and Software Requirements
-Author Name
+= Space Cubics UI Preview
+Space Cubics
 :idprefix:
 :idseparator: -
 :!example-caption:
