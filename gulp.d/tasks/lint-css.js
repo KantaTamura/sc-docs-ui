@@ -1,10 +1,8 @@
 'use strict'
 
-const stylelint = require('gulp-stylelint')
-const vfs = require('vinyl-fs')
-
-module.exports = (files) => (done) =>
-  vfs
-    .src(files)
-    .pipe(stylelint({ reporters: [{ formatter: 'string', console: true }], failAfterError: true }))
-    .on('error', done)
+module.exports = (files) => async () => {
+  const { default: stylelint } = await import('stylelint')
+  const result = await stylelint.lint({ files, formatter: 'string' })
+  if (result.report) process.stdout.write(result.report)
+  if (result.errored) throw new Error('CSS lint failed')
+}

@@ -261,8 +261,7 @@
 }
 
 .doc .tablescroll {
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
 }
@@ -321,7 +320,6 @@
 
 .table-lightbox::backdrop {
   background: rgba(16, 18, 22, 0.28);
-  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   animation: table-backdrop-in 360ms ease both;
 }
@@ -429,7 +427,7 @@ html.is-clipped--table-lightbox {
 }
 
 .doc td.tableblock > .content {
-  word-wrap: anywhere; /* aka overflow-wrap; used when hyphens are disabled or aren't sufficient */
+  overflow-wrap: anywhere; /* aka overflow-wrap; used when hyphens are disabled or aren't sufficient */
 }
 
 .doc td.tableblock > .content > :first-child {
@@ -558,7 +556,7 @@ html.is-clipped--table-lightbox {
   padding: 1rem 1rem 0.75rem;
   background: var(--admonition-background);
   width: 100%;
-  word-wrap: anywhere;
+  overflow-wrap: anywhere;
 }
 
 .doc .admonitionblock td.icon {
@@ -673,7 +671,6 @@ html.is-clipped--table-lightbox {
 .image-lightbox {
   align-items: center;
   background: rgba(16, 18, 22, 0.28);
-  -webkit-backdrop-filter: blur(0);
   backdrop-filter: blur(0);
   cursor: zoom-out;
   display: flex;
@@ -689,7 +686,6 @@ html.is-clipped--table-lightbox {
 }
 
 .image-lightbox.is-active {
-  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   opacity: 1;
   pointer-events: auto;
@@ -933,7 +929,7 @@ html.is-clipped--image-lightbox {
 .doc details > summary::before {
   content: "";
   border: solid transparent;
-  border-left-color: currentColor;
+  border-left-color: currentcolor;
   border-width: 0.3em 0 0.3em 0.5em;
   position: absolute;
   top: calc((var(--doc-line-height) * 0.5 - 0.3) * 1em);
@@ -942,7 +938,7 @@ html.is-clipped--image-lightbox {
 }
 
 .doc details[open] > summary::before {
-  border-color: currentColor transparent transparent;
+  border-color: currentcolor transparent transparent;
   border-width: 0.5rem 0.3rem 0;
   transform: translateY(15%);
 }
@@ -1085,7 +1081,7 @@ html.is-clipped--image-lightbox {
 }
 
 .doc .source-toolbox svg.copy-icon {
-  fill: currentColor;
+  fill: currentcolor;
 }
 
 .doc .source-toolbox .copy-toast {
@@ -1174,7 +1170,7 @@ html.is-clipped--image-lightbox {
 }
 
 .doc .conum[data-value] {
-  border: 1px solid currentColor;
+  border: 1px solid currentcolor;
   border-radius: 100%;
   display: inline-block;
   font-family: var(--body-font-family);
@@ -1267,7 +1263,7 @@ html.is-clipped--image-lightbox {
 
 .doc .nobreak {
   hyphens: none;
-  word-wrap: normal;
+  overflow-wrap: normal;
 }
 
 .doc :not(pre).pre-wrap {

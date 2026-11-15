@@ -11,14 +11,13 @@ const previewSrcDir = 'preview-src'
 const previewDestDir = 'public'
 const srcDir = 'src'
 const destDir = `${previewDestDir}/_`
-const { reload: livereload } = process.env.LIVERELOAD === 'true' ? require('gulp-connect') : {}
-const serverConfig = { host: '0.0.0.0', port: 5252, livereload }
+const serverConfig = { host: '127.0.0.1', port: 5252 }
 
 const task = require('./gulp.d/tasks')
 const glob = {
   all: [srcDir, previewSrcDir],
   css: `${srcDir}/css/**/*.css`,
-  js: ['gulpfile.js', 'gulp.d/**/*.js', `${srcDir}/helpers/*.js`, `${srcDir}/js/**/+([^.])?(.bundle).js`],
+  js: ['eslint.config.mjs', 'index.js', 'gulpfile.js', 'gulp.d/**/*.js', `${srcDir}/helpers/*.js`, `${srcDir}/js/**/+([^.])?(.bundle).js`],
 }
 
 const cleanTask = createTask({
@@ -35,7 +34,7 @@ const lintCssTask = createTask({
 
 const lintJsTask = createTask({
   name: 'lint:js',
-  desc: 'Lint the JavaScript source files using eslint (JavaScript Standard Style)',
+  desc: 'Lint the JavaScript source files using ESLint',
   call: task.lintJs(glob.js),
 })
 
@@ -47,7 +46,7 @@ const lintTask = createTask({
 
 const formatTask = createTask({
   name: 'format',
-  desc: 'Format the JavaScript source files using prettify (JavaScript Standard Style)',
+  desc: 'Format the JavaScript source files using ESLint autofix',
   call: task.format(glob.js),
 })
 
@@ -83,15 +82,9 @@ const bundleTask = createTask({
   call: series(bundleBuildTask, bundlePackTask),
 })
 
-const packTask = createTask({
-  name: 'pack',
-  desc: '(deprecated; use bundle instead)',
-  call: series(bundleTask),
-})
-
 const buildPreviewPagesTask = createTask({
   name: 'preview:build-pages',
-  call: task.buildPreviewPages(srcDir, previewSrcDir, previewDestDir, livereload),
+  call: task.buildPreviewPages(srcDir, previewSrcDir, previewDestDir),
 })
 
 const previewBuildTask = createTask({
@@ -120,6 +113,5 @@ module.exports = exportTasks(
   bundleTask,
   bundlePackTask,
   previewTask,
-  previewBuildTask,
-  packTask
+  previewBuildTask
 )
