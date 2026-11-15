@@ -1,4 +1,4 @@
-name: Build Antora UI (reusable)
+name: Build Space Cubics UI (reusable)
 
 on:
   workflow_call:
@@ -11,16 +11,16 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v31
         with:
-          node-version: '20'
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        run: npm install
+        run: nix develop --command pnpm install --frozen-lockfile
 
-      - name: Build Antora UI bundle
-        run: npx gulp bundle
+      - name: Build Space Cubics UI bundle
+        run: nix develop --command pnpm run build
 
       - name: Upload UI bundle artifact
         uses: actions/upload-artifact@v6
