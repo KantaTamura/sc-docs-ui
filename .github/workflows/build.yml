@@ -1,4 +1,4 @@
-name: Build Antora UI
+name: Build Space Cubics UI
 
 on:
   pull_request:
